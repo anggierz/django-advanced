@@ -45,13 +45,13 @@ class DoctorList(generics.ListAPIView):
 class DoctorRetrieve(generics.RetrieveAPIView):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
-    permission_classes = permissions.IsAuthenticatedOrReadOnly
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
    
 # Solo los administradores pueden eliminar doctores 
 class DoctorDestroy(generics.DestroyAPIView):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
-    permission_classes = permissions.IsAdminUser
+    permission_classes = [permissions.IsAdminUser]
 
 
 
@@ -59,26 +59,26 @@ class DoctorDestroy(generics.DestroyAPIView):
 class AppointmentCreate(generics.CreateAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
-    permission_classes = permissions.IsAuthenticated
+    permission_classes = [permissions.IsAuthenticated]
 
 #Solo los administradores pueden listar todas las citas
 class AppointmentList(generics.ListAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
-    permission_classes = permissions.IsAdminUser
+    permission_classes = [permissions.IsAdminUser]
     
 
 #Los usuarios autenticados pueden actualizar citas. La idea es que actualicen una cita suya
 class AppointmentUpdate(generics.UpdateAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
-    permission_classes = permissions.IsAuthenticated
+    permission_classes = [permissions.IsAuthenticated]
    
 # Solo los administradores pueden eliminar citas
 class AppointmentDestroy(generics.DestroyAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
-    permission_classes = permissions.IsAdminUser
+    permission_classes = [permissions.IsAdminUser]
 
 
 

@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("myapp.urls")),
-    path("auth/", include(obtain_auth_token))
+    path("api/token/", TokenObtainPairView.as_view(), name='token_obtainer')
 ]
