@@ -18,5 +18,3 @@ class Appointment(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
     
-    def __str__(self):
-        return f"Appointment with doctor {self.doctor.name} on {self.date.strftime('%Y-%m-%d %H:%M')}"

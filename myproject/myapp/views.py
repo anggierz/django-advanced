@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from rest_framework import viewsets, permissions, generics, status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .models import Doctor, Appointment
 from .serializers import DoctorSerializer, AppointmentSerializer
+
 
 
 
@@ -81,18 +82,11 @@ class AppointmentDestroy(generics.DestroyAPIView):
     permission_classes = [permissions.IsAdminUser]
 
 
-
-
-# @api_view(['GET'])
-# @permission_classes([permissions.IsAuthenticated])
-# def user_appointments(request):
-#     appointments = Appointment.objects.filter(patient=request.user)
-#     serializer = AppointmentSerializer(appointments, many=True)
-#     return Response(serializer.data)
-
-#API VIEW personalizada: Listar todas las citas de un doctor en específico. Une el modelo Doctor con Appointment
+#API VIEW personalizada: Listar todas las citas de un doctor en específico. Une el modelo Doctor con Appointment. Solo utilizable
+# por administradores
 @api_view(['GET'])
-def doctor_appointments(request, doctor_id):
-    appointments = Appointment.objects.filter(doctor_id=doctor_id)
+@permission_classes([permissions.IsAdminUser])
+def doctor_appointments(request, pk: int):
+    appointments = Appointment.objects.filter(doctor_id=pk)
     serializer = AppointmentSerializer(appointments, many=True)
     return Response(serializer.data)
