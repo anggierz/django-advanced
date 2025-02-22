@@ -31,7 +31,7 @@ pip install -r requirements.txt
 
 ### 3. Configura las variables del archivo .env
 
-Para hacer llamadas al endpoint de Spotify, se necesitan los datos de la base de datos SQL. El código del proyecto
+Para hacer llamadas a los endpoints, se necesitan los datos de la base de datos SQL. El código del proyecto
 está configurado de manera que carga las variables del archivo .env en settings.py. Crea tu archivo .env a partir del archivo
 **.env.example** que proporciono en el proyecto. 
 
